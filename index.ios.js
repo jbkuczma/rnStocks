@@ -1,53 +1,65 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+'use strict';
 
-import React, { Component } from 'react';
+import React, {
+  Component,
+} from 'react';
+
 import {
   AppRegistry,
+  Image,
+  ListView,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight,
 } from 'react-native';
-
-class rnStocks extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+var data = [
+        {ticker: "APPL", company: "Apple"},
+        {ticker: "GOOG", company: "Google"},
+        {ticker: "NKE", company: "Nike"},
+        {ticker: "YHOO", company: "Yahoo"},
+        {ticker: "SBUX", company: "Starbucks"},
+];
+var styles = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        flex: 1,
+        flexDirection: 'row',
+        backgroundColor: '#F5FCFF',
+    },
 });
+
+class rnStocks extends React.Component {
+    constructor(props) {
+        super(props);
+        var ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+        });
+        this.state = {
+            dataSource: ds.cloneWithRows(data),
+        };
+
+    }
+
+    _renderRow(data, sectionID, rowID){
+        return (
+            <TouchableHighlight>
+                <Text> {data.ticker} , {data.company} </Text>
+            </TouchableHighlight>
+        );
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <ListView
+                    dataSource = {this.state.dataSource}
+                    renderRow = {this._renderRow.bind(this)}
+                />
+            </View>
+        )
+    }
+};
 
 AppRegistry.registerComponent('rnStocks', () => rnStocks);
