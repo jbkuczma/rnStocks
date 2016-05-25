@@ -21,12 +21,38 @@ var data = [
         {ticker: "SBUX", company: "Starbucks"},
 ];
 var styles = StyleSheet.create({
+    // container: {
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     flex: 1,
+    //     flexDirection: 'row',
+    //     backgroundColor: '#F5FCFF',
+    // },
     container: {
-        alignItems: 'center',
-        justifyContent: 'center',
         flex: 1,
+        flexDirection: 'column',
+    },
+    scrollViewContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        padding: 15,
+    },
+    listViewContainer: {
+        flex: 1,
+        flexDirection: 'column',
+    },
+    buttonContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        padding: 15,
+        backgroundColor: '#EEE',
+    },
+    header: {
+        flex: 0,
         flexDirection: 'row',
-        backgroundColor: '#F5FCFF',
+        justifyContent: 'space-between',
+        padding: 15,
+        backgroundColor: '#387ef5',
     },
 });
 
@@ -44,18 +70,31 @@ class rnStocks extends React.Component {
 
     _renderRow(data, sectionID, rowID){
         return (
-            <TouchableHighlight>
+            <TouchableHighlight style={styles.buttonContainer}>
                 <Text> {data.ticker} , {data.company} </Text>
             </TouchableHighlight>
+        );
+    }
+
+    _renderHeader(){
+        return(
+            <Text>
+                Testing a header
+            </Text>
         );
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <View style={styles.header}>
+
+                </View>
                 <ListView
+                    style = {styles.listViewContainer}
                     dataSource = {this.state.dataSource}
                     renderRow = {this._renderRow.bind(this)}
+                    renderHeader = {this._renderHeader.bind(this)}
                 />
             </View>
         )
