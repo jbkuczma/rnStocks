@@ -53,9 +53,14 @@ var styles = StyleSheet.create({
     },
     editStocks: {
         flex: 1,
-        flexDirection: 'column',
         alignSelf: 'center',
+        justifyContent: 'center',
         padding: 15,
+    },
+    leftNavButton: {
+        fontSize: 18,
+        marginLeft: 13,
+        marginTop: 2,
     },
 });
 

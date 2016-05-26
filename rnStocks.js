@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 
 import MainWindow from './App/Views/Main';
+import styles from './App/Styles/styles';
 
 var NavigationBarRoute = {
     LeftButton(route, navigator, index, navState){
@@ -28,7 +29,7 @@ var NavigationBarRoute = {
                     underlayColor='transparent'
                     onPress={() => {if(index > 0){navigator.pop() } }}
                 >
-                <Text> Back </Text>
+                <Text style={styles.leftNavButton}> Back </Text>
                 </TouchableHighlight>
             )
         }else{
