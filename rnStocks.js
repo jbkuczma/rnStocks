@@ -100,13 +100,13 @@ class rnStocks extends React.Component {
 
    openItem() {
        Alert.alert(
-           'Testing',
-           'This will let you add more stocks to the ones currently displayed',
+           'Testing', //title
+           'This will let you add more stocks to the ones currently displayed', //message
            [
                {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                {text: 'OK', onPress: () => console.log('OK Pressed')},
-           ]
+           ] //different button options
        )
    }
   ////
