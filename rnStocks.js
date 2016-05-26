@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 
 import {
+  Alert,
   AppRegistry,
   Image,
   ListView,
@@ -11,7 +12,11 @@ import {
   Text,
   View,
   TouchableHighlight,
+  RefreshControl,
+  TouchableWithoutFeedback,
+  ScrollView,
 } from 'react-native';
+
 var data = [
         {ticker: "APPL", company: "Apple"},
         {ticker: "GOOG", company: "Google"},
@@ -19,6 +24,7 @@ var data = [
         {ticker: "YHOO", company: "Yahoo"},
         {ticker: "SBUX", company: "Starbucks"},
 ];
+
 var styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -45,6 +51,22 @@ var styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 15,
         backgroundColor: '#387ef5',
+    },
+    button: {
+        height: 36,
+       backgroundColor: '#48BBEC',
+       alignSelf: 'stretch',
+       justifyContent: 'center'
+    },
+    newButton: {
+        marginBottom: 0,
+        borderRadius: 0,
+
+    },
+    buttonText: {
+        fontSize: 18,
+        color: 'white',
+        alignSelf: 'center'
     },
 });
 
@@ -76,6 +98,19 @@ class rnStocks extends React.Component {
         );
     }
 
+   openItem() {
+       Alert.alert(
+           'Testing',
+           'This will let you add more stocks to the ones currently displayed',
+           [
+               {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
+               {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+               {text: 'OK', onPress: () => console.log('OK Pressed')},
+           ]
+       )
+   }
+  ////
+
     render() {
         return (
             <View style={styles.container}>
@@ -88,9 +123,22 @@ class rnStocks extends React.Component {
                     renderRow = {this._renderRow.bind(this)}
                     // renderHeader = {this._renderHeader.bind(this)}
                 />
+                <TouchableHighlight
+                    style = {[styles.button, styles.newButton]}
+                    onPress = {this.openItem}
+                    underlayColor = '#99d9f4'
+                >
+                    <Text style={styles.buttonText}> + </Text>
+                </TouchableHighlight>
+
             </View>
         )
     }
 };
 
+// <TouchableHighlight
+//     underlayColor='#99d9f4'
+//     onPress={this.openItem}>
+//     <Text> + </Text>
+// </TouchableHighlight>
 module.exports = rnStocks;
