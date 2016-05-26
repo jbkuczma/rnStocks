@@ -109,7 +109,6 @@ class rnStocks extends React.Component {
            ] //different button options
        )
    }
-  ////
 
     render() {
         return (
@@ -136,9 +135,4 @@ class rnStocks extends React.Component {
     }
 };
 
-// <TouchableHighlight
-//     underlayColor='#99d9f4'
-//     onPress={this.openItem}>
-//     <Text> + </Text>
-// </TouchableHighlight>
 module.exports = rnStocks;
