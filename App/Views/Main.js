@@ -43,7 +43,7 @@ class MainWindow extends React.Component {
     _renderRow(data, sectionID, rowID){
         return (
             <TouchableHighlight style={styles.buttonContainer}>
-                <Text> {data.ticker} , {data.company} </Text>
+                <Text style={styles.rowContent}> {data.ticker} , {data.company} </Text>
             </TouchableHighlight>
         );
     }

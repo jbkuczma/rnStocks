@@ -12,6 +12,7 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#000',
     },
     scrollViewContainer: {
         flex: 1,
@@ -26,7 +27,10 @@ var styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         padding: 15,
-        backgroundColor: '#EEE',
+        backgroundColor: '#2d3336',
+    },
+    rowContent: {
+        color: '#ffff',
     },
     header: {
         flex: 0,
