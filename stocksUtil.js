@@ -8,3 +8,6 @@ exports.symbolSuggest = function(query: string) : Object {
 
 //some more details about a given stock
 //http://finance.yahoo.com/webservice/v1/symbols/AAPL/quote?format=json&view=detail
+
+//interesting
+//http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json
