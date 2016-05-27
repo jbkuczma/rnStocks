@@ -40,7 +40,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#387ef5',
     },
     button: {
-        height: 36,
+       height: 36,
        backgroundColor: '#48BBEC',
        alignSelf: 'stretch',
        justifyContent: 'center'
@@ -48,7 +48,6 @@ var styles = StyleSheet.create({
     newButton: {
         marginBottom: 0,
         borderRadius: 0,
-
     },
     buttonText: {
         fontSize: 18,
