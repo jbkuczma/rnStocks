@@ -4,27 +4,53 @@ import React, {
 } from 'react';
 
 import {
-  Alert,
   AppRegistry,
-  Image,
   ListView,
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  RefreshControl,
-  TouchableWithoutFeedback,
-  ScrollView,
+  TextInput,
 } from 'react-native';
 
 import styles from '../Styles/styles';
 
+function symbolSuggest(query) {
+  var url = 'http://d.yimg.com/aq/autoc?query=' + query + '&region=US&lang=en-US&callback=YAHOO.util.ScriptNodeDataSource.callbacks';
+  return fetch(url);
+}
+
 class EditStocks extends React.Component {
+
+    //function will show suggested symbols based on what is typed
+    onTyping(text){
+        return text;
+    }
 
     render() {
         return (
-            <View style={styles.editStocks}>
-                <Text> It worked! 🤔 </Text>
+            //change color of header area from white
+            <View style={styles.editContainer}>
+                <Text style={styles.helpText}>
+                    Type a ticker symbol
+                </Text>
+                <View style={styles.searchBar}>
+                    <TextInput
+                        style={styles.searchBarInput}
+                        autoCapitalize={'characters'}
+                        autoFocus={true}
+                        placeholder="Ticker Symbol"
+                        placeholderTextColor="gray"
+                        onChangeText={(text) => this.onTyping({text})}
+                        // value={this.state.text}
+                    />
+                    <View>
+                        <ListView
+                            //have current stock list displayed here
+                        />
+                    </View>
+
+                </View>
             </View>
         )
     }
