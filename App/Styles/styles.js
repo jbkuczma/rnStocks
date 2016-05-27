@@ -6,7 +6,7 @@
 // } from 'react-native';
 
 var React = require('react-native');
-var {StyleSheet} = React;
+var {StyleSheet, PixelRatio, Platform} = React;
 
 var styles = StyleSheet.create({
     container: {
@@ -64,6 +64,30 @@ var styles = StyleSheet.create({
         fontSize: 18,
         marginLeft: 13,
         marginTop: 2,
+        color: '#ffff',
+    },
+    editContainer: {
+      flex: 1,
+      marginTop: Platform.OS === 'ios' ? 20 : 0,
+      flexDirection: 'column',
+      backgroundColor: '#000',
+      paddingLeft: 15,
+      paddingRight: 15,
+    },
+    searchBar: {
+      flexDirection: 'row',
+      paddingTop: 15,
+    },
+    searchBarInput: {
+      flex: 4,
+      flexDirection: 'column',
+      height: 40,
+      borderColor: '#2d3336',
+      borderWidth: 0.5,
+      backgroundColor: '#202020',
+      borderRadius: 4,
+      color: 'white',
+      paddingLeft: 10,
     },
 });
 
