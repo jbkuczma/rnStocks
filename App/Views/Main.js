@@ -4,11 +4,8 @@ import React, {
 } from 'react';
 
 import {
-  Alert,
   AppRegistry,
-  Image,
   ListView,
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
