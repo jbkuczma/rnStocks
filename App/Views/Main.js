@@ -21,7 +21,7 @@ import styles from '../Styles/styles';
 import EditStocks from './EditStocks';
 import StockItem from './StockItem';
 var data = [
-        {ticker: "APPL", company: "Apple"},
+        {ticker: "AAPL", company: "Apple"},
         {ticker: "GOOG", company: "Google"},
         {ticker: "NKE", company: "Nike"},
         {ticker: "YHOO", company: "Yahoo"},
@@ -91,7 +91,7 @@ class MainWindow extends React.Component {
                     onPress = {this.openItem}
                     underlayColor = '#99d9f4'
                 >
-                    <Text style={styles.buttonText}> + </Text>
+                    <Text style={styles.buttonText}> &#8801; </Text>
                 </TouchableHighlight>
 
             </View>
