@@ -4,9 +4,6 @@ import React, {
 } from 'react';
 
 import {
-  AppRegistry,
-  ListView,
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
@@ -30,6 +27,7 @@ class EditStocks extends React.Component {
     render() {
         return (
             //change color of header area from white
+            // have current stock list displayed after >TextInput/>. user should be able to remove stocks from list
             <View style={styles.editContainer}>
                 <Text style={styles.helpText}>
                     Type a ticker symbol
@@ -44,14 +42,6 @@ class EditStocks extends React.Component {
                         onChangeText={(text) => this.onTyping({text})}
                         // value={this.state.text}
                     />
-                    <View>
-                       /* have current stock list displayed here.
-                        * user should be able to remove stocks from list
-                        */
-
-
-                    </View>
-
                 </View>
             </View>
         )
