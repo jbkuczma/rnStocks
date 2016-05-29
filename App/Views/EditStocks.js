@@ -45,9 +45,8 @@ class EditStocks extends React.Component {
                         // value={this.state.text}
                     />
                     <View>
-                        <ListView
-                            //have current stock list displayed here
-                        />
+                        //suggested stocks/ticker symbols displayed as user types
+
                     </View>
 
                 </View>
