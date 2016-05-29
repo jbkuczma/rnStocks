@@ -19,6 +19,7 @@ import {
 
 import styles from '../Styles/styles';
 import EditStocks from './EditStocks';
+import StockItem from './StockItem';
 var data = [
         {ticker: "APPL", company: "Apple"},
         {ticker: "GOOG", company: "Google"},
@@ -40,14 +41,6 @@ class MainWindow extends React.Component {
         this.openItem = this.openItem.bind(this);
     }
 
-    _renderRow(data, sectionID, rowID){
-        return (
-            <TouchableHighlight style={styles.buttonContainer}>
-                <Text style={styles.rowContent}> {data.ticker} , {data.company} </Text>
-            </TouchableHighlight>
-        );
-    }
-
     _renderHeader(){
         return(
             <Text>
@@ -55,18 +48,6 @@ class MainWindow extends React.Component {
             </Text>
         );
     }
-
-   // openItem() {
-   //     Alert.alert(
-   //         'Testing', //title
-   //         'This will let you add more stocks to the ones currently displayed', //message
-   //         [
-   //             {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-   //             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-   //             {text: 'OK', onPress: () => console.log('OK Pressed')},
-   //         ] //different button options
-   //     )
-   // }
 
    updateItem(item, index) {
         var items = this.state.dataSource;
@@ -97,7 +78,12 @@ class MainWindow extends React.Component {
                 <ListView
                     style = {styles.listViewContainer}
                     dataSource = {this.state.dataSource}
-                    renderRow = {this._renderRow.bind(this)}
+                    renderRow={(rowData, sectionID, rowID) =>
+                        <StockItem stock={rowData}
+                            onPress={() => this.props.onPress(rowData)}
+                            // onLongPress={() => this.props.onLongPress(rowData, rowID)}
+                        />
+                    }
                     // renderHeader = {this._renderHeader.bind(this)}
                 />
                 <TouchableHighlight
