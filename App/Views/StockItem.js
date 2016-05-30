@@ -6,7 +6,6 @@ import React, {
 import {
   AppRegistry,
   ListView,
-  StyleSheet,
   Text,
   View,
   TouchableHighlight,
