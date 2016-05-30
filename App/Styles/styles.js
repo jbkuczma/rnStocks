@@ -89,6 +89,13 @@ var styles = StyleSheet.create({
       color: 'white',
       paddingLeft: 10,
     },
+    helpText: {
+        alignSelf: 'center',
+        fontSize: 12,
+        color: '#ffff',
+        marginTop: 10,
+        marginBottom: 5,
+    },
 });
 
 module.exports = styles;
