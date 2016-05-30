@@ -8,6 +8,7 @@ import {
   View,
   TouchableHighlight,
   TextInput,
+  Alert,
 } from 'react-native';
 
 import styles from '../Styles/styles';
@@ -19,9 +20,42 @@ function symbolSuggest(query) {
 
 class EditStocks extends React.Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            loaded: false,
+            text: null,
+            helpText: 'Search for a company or ticker',
+        };
+    }
+
     //function will show suggested symbols based on what is typed
-    onTyping(text){
-        return text;
+    onTypingSymbolSuggest(text){
+        if(text.text == ''){
+            var helpText = 'Search for a company or ticker';
+        }else{
+            var helpText = 'Validating input'
+        }
+        this.setState({
+            text: text.text,
+            helpText: helpText,
+        });
+        //begin symbol suggest
+        var url = 'http://d.yimg.com/aq/autoc?query=' + text.text + '&region=US&lang=en-US&callback=YAHOO.util.ScriptNodeDataSource.callbacks';
+        fetch(url)
+        .then((response) => response.text())
+        .then((textResponse) => {
+            console.log(textResponse);
+        })
+        .catch((error) => {
+            Alert.alert(
+                'An error has occurred',
+                'Please try again',
+                [
+                    {text: 'Okay', onPress: () => console.log('OK Pressed')},
+                ]
+            );
+        });
     }
 
     render() {
@@ -30,17 +64,17 @@ class EditStocks extends React.Component {
             // have current stock list displayed after >TextInput/>. user should be able to remove stocks from list
             <View style={styles.editContainer}>
                 <Text style={styles.helpText}>
-                    Type a ticker symbol
+                    {this.state.helpText}
                 </Text>
                 <View style={styles.searchBar}>
                     <TextInput
                         style={styles.searchBarInput}
                         autoCapitalize={'characters'}
                         autoFocus={true}
-                        placeholder="Ticker Symbol"
+                        placeholder="Search"
                         placeholderTextColor="gray"
-                        onChangeText={(text) => this.onTyping({text})}
-                        // value={this.state.text}
+                        onChangeText={(text) => this.onTypingSymbolSuggest({text})}
+                        value={this.state.text}
                     />
                 </View>
             </View>
