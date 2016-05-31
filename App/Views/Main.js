@@ -17,6 +17,8 @@ import {
 import styles from '../Styles/styles';
 import EditStocks from './EditStocks';
 import StockItem from './StockItem';
+import StockItemInfo from './StockItemInfo';
+
 var data = [
         {symbol: "AAPL", name: "Apple"},
         {symbol: "GOOG", name: "Google"},
@@ -78,10 +80,8 @@ class MainWindow extends React.Component {
                     renderRow={(rowData, sectionID, rowID) =>
                         <StockItem stock={rowData}
                             onPress={() => this.props.onPress(rowData)}
-                            // onLongPress={() => this.props.onLongPress(rowData, rowID)}
                         />
                     }
-                    // renderHeader = {this._renderHeader.bind(this)}
                 />
                 <TouchableHighlight
                     style = {[styles.button, styles.newButton]}

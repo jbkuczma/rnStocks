@@ -16,14 +16,26 @@ import {
 } from 'react-native';
 
 import styles from '../Styles/styles';
+import StockItemInfo from './StockItemInfo';
 
 class StockItem extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            stockInfo: [],
+        }
+    }
+
     //show more stock information when pressed
     onPress(stock){
         this.fetchData(stock);
+        console.log("pressed");
+        //should open new view => StockItemInfo
     }
 
     fetchData(stock){
+        var data = [];
         var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock + '/quote?format=json&view=detail';
         fetch(url)
         .then((response) => response.json())
@@ -36,18 +48,29 @@ class StockItem extends React.Component {
             var dayLow = jsonResponse.list.resources[0].resource.fields.day_low;
             var yearHigh = jsonResponse.list.resources[0].resource.fields.year_high;
             var yearLow = jsonResponse.list.resources[0].resource.fields.year_low;
-            Alert.alert(
-                    "Title", //title
-                    'This will let you see more info regarding selected stock', //message
-                    [
-                        {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-                        {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                        {text: 'OK', onPress: () => console.log('OK Pressed')},
-                    ] //different button options
-                )
+            data = [{
+                symbol: stock,
+                company: company,
+                priceChange: change,
+                percentChange: changePercent,
+                currentPrice: price,
+                dailyHigh: dayHigh,
+                dailyLow: dayLow,
+                yearlyHigh: yearHigh,
+                yearlyLow: yearLow
+            }];
+            this.setState({
+                stockInfo: data,
+            });
         })
         .catch((error) => {
-            console.warn(error);
+            Alert.alert(
+                'An error has occurred',
+                'Please try again',
+                [
+                    {text: 'Okay', onPress: () => console.log('OK Pressed')},
+                ]
+            );
         });
     }
 

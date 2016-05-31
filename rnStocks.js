@@ -19,6 +19,8 @@ import {
 } from 'react-native';
 
 import MainWindow from './App/Views/Main';
+import EditStocks from './App/Views/EditStocks';
+import StockItemInfo from './App/Views/StockItemInfo';
 import styles from './App/Styles/styles';
 
 var NavigationBarRoute = {
