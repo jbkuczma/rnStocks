@@ -18,11 +18,11 @@ import styles from '../Styles/styles';
 import EditStocks from './EditStocks';
 import StockItem from './StockItem';
 var data = [
-        {ticker: "AAPL", company: "Apple"},
-        {ticker: "GOOG", company: "Google"},
-        {ticker: "NKE", company: "Nike"},
-        {ticker: "YHOO", company: "Yahoo"},
-        {ticker: "SBUX", company: "Starbucks"},
+        {symbol: "AAPL", name: "Apple"},
+        {symbol: "GOOG", name: "Google"},
+        {symbol: "NKE", name: "Nike"},
+        {symbol: "YHOO", name: "Yahoo"},
+        {symbol: "SBUX", name: "Starbucks"},
 ];
 
 class MainWindow extends React.Component {
