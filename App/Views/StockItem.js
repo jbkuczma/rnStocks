@@ -24,7 +24,6 @@ class StockItem extends React.Component {
     }
 
     fetchData(stock){
-
         var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock + '/quote?format=json&view=detail';
         fetch(url)
         .then((response) => response.json())
@@ -57,9 +56,9 @@ class StockItem extends React.Component {
         return(
             <View>
                 <TouchableHighlight style={styles.buttonContainer}
-                    onPress={this.onPress.bind(this,stock.ticker)}
+                    onPress={this.onPress.bind(this,stock.symbol)}
                 >
-                    <Text style={styles.rowContent}> {stock.ticker} , {stock.company} </Text>
+                    <Text style={styles.rowContent}> {stock.symbol} , {stock.name} </Text>
                 </TouchableHighlight>
             </View>
         );
