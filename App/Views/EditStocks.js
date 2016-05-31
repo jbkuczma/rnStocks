@@ -9,9 +9,11 @@ import {
   TouchableHighlight,
   TextInput,
   Alert,
+  ListView,
 } from 'react-native';
 
 import styles from '../Styles/styles';
+import AddStockItem from './AddStockItem';
 
 function symbolSuggest(query) {
   var url = 'http://d.yimg.com/aq/autoc?query=' + query + '&region=US&lang=en-US&callback=YAHOO.util.ScriptNodeDataSource.callbacks';
@@ -22,10 +24,14 @@ class EditStocks extends React.Component {
 
     constructor(props){
         super(props);
+        var ds = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2,
+        });
         this.state = {
             loaded: false,
             text: null,
             helpText: 'Search for a company or ticker',
+            dataSource: ds,
         };
     }
 
@@ -45,7 +51,14 @@ class EditStocks extends React.Component {
         fetch(url)
         .then((response) => response.text())
         .then((textResponse) => {
-            console.log(textResponse);
+            // console.log(textResponse);
+            textResponse = textResponse.slice(42,textResponse.length-2); //terrible way of getting the data but it works for now
+            // console.log(textResponse);
+            var data = JSON.parse(textResponse).ResultSet.Result;
+            // console.log(data);
+            this.setState({
+                dataSource: this.state.dataSource.cloneWithRows(data),
+            });
         })
         .catch((error) => {
             Alert.alert(
@@ -60,8 +73,7 @@ class EditStocks extends React.Component {
 
     render() {
         return (
-            //change color of header area from white
-            // have current stock list displayed after >TextInput/>. user should be able to remove stocks from list
+            // change color of header area from white
             <View style={styles.editContainer}>
                 <Text style={styles.helpText}>
                     {this.state.helpText}
@@ -75,6 +87,16 @@ class EditStocks extends React.Component {
                         placeholderTextColor="gray"
                         onChangeText={(text) => this.onTypingSymbolSuggest({text})}
                         value={this.state.text}
+                    />
+                </View>
+                <View style = {styles.suggestions}>
+                    <ListView
+                        dataSource = {this.state.dataSource}
+                        renderRow={(rowData, sectionID, rowID) =>
+                            <AddStockItem stock={rowData}
+                                onPress={() => this.props.addOnPress(rowData)}
+                            />
+                        }
                     />
                 </View>
             </View>
