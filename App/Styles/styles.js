@@ -61,9 +61,10 @@ var styles = StyleSheet.create({
         padding: 15,
     },
     leftNavButton: {
-        fontSize: 18,
+        fontSize: 14,
         marginLeft: 13,
         marginTop: 2,
+        marginTop: 10,
         color: '#ffff',
     },
     editContainer: {
@@ -96,6 +97,10 @@ var styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 5,
     },
+    suggestions: {
+        flex: 10,
+        marginTop: 10,
+    }
 });
 
 module.exports = styles;
