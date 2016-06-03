@@ -1,12 +1,7 @@
 'use strict';
-// import React from 'react';
-//
-// import {
-//   StyleSheet
-// } from 'react-native';
 
 var React = require('react-native');
-var {StyleSheet, PixelRatio, Platform} = React;
+var {StyleSheet, PixelRatio, Platform, Navigator} = React;
 
 var styles = StyleSheet.create({
     container: {
@@ -22,6 +17,7 @@ var styles = StyleSheet.create({
     listViewContainer: {
         flex: 1,
         flexDirection: 'column',
+        marginTop: 20,
     },
     buttonContainer: {
         flex: 1,
@@ -77,7 +73,7 @@ var styles = StyleSheet.create({
     },
     searchBar: {
       flexDirection: 'row',
-      paddingTop: 15,
+      paddingTop: 5,
     },
     searchBarInput: {
       flex: 4,
@@ -94,13 +90,36 @@ var styles = StyleSheet.create({
         alignSelf: 'center',
         fontSize: 12,
         color: '#ffff',
-        marginTop: 10,
+        marginTop: 15,
         marginBottom: 5,
     },
     suggestions: {
         flex: 10,
         marginTop: 10,
-    }
+    },
+    navBar: {
+      flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: '#000', // changing navbar color
+    },
+    navTitle: {
+      color: 'white', // changing navbar title color
+    },
+    routerScene: {
+      paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight, // some navbar padding to avoid content overlap
+    },
+    testing1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: "#000",
+    },
+    testing2: {
+        textAlign: 'center',
+        color: "#ffff",
+    },
 });
 
 module.exports = styles;
