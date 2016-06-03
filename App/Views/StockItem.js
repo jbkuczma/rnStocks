@@ -12,6 +12,8 @@ import {
   Alert,
 } from 'react-native';
 
+import { Actions } from 'react-native-router-flux';
+
 import styles from '../Styles/styles';
 import StockItemInfo from './StockItemInfo';
 
@@ -24,15 +26,15 @@ class StockItem extends React.Component {
         }
     }
 
-    componentWillMount(){
-        this.fetchData('GOOG'); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
+    componentDidMount(){
+        this.fetchData("GOOG"); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
     }
-    //show more stock information when pressed
-    onPress(stock){
-        this.fetchData(stock);
-        console.log("pressed");
-        //should open new view => StockItemInfo
-    }
+    //show more stock information when pressed, should open new view => StockItemInfo
+    // onPress(stock){
+    //     this.fetchData(stock);
+    //
+    //     console.log("pressed");
+    // }
 
     fetchData(stock){
         var data = [];
@@ -59,7 +61,6 @@ class StockItem extends React.Component {
                 yearlyHigh: yearHigh,
                 yearlyLow: yearLow
             }];
-            console.log(data);
             this.setState({
                 stockInfo: data,
             });
@@ -77,10 +78,12 @@ class StockItem extends React.Component {
 
     render(){
         var stock = this.props.stock;
+        const goToStockInfo = () => Actions.StockItemInfo({stock: stock});
         return(
             <View>
                 <TouchableHighlight style={styles.buttonContainer}
-                    onPress={this.onPress.bind(this,stock.symbol)}
+                    onPress={goToStockInfo}
+                    // onPress={this.onPress.bind(this,stock.symbol)}
                 >
                     <Text style={styles.rowContent}> {stock.symbol} , {stock.name} => {stock.price}</Text>
                 </TouchableHighlight>
