@@ -13,7 +13,10 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
   Alert,
+  StatusBar,
 } from 'react-native';
+
+import { Actions } from 'react-native-router-flux';
 
 import styles from '../Styles/styles';
 import EditStocks from './EditStocks';
@@ -47,11 +50,7 @@ class MainWindow extends React.Component {
         this.getPrice();
     }
     getPrice(){
-        var newData = [];
-        console.log(newData);
-        // newData = data.slice(0);
-        newData = this.state.db.slice(0);
-        console.log(newData);
+        let newData = this.state.db.slice(0);
             newData.map(function(stock){
                 var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock.symbol + '/quote?format=json&view=detail';
                 fetch(url)
@@ -111,13 +110,16 @@ class MainWindow extends React.Component {
         this.getPrice();
         this.setState({refreshing: false});
     }
-
+    // <View style={styles.header}>
+    //
+    // </View>
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.header}>
 
-                </View>
+            <StatusBar
+                barStyle="light-content"
+            />
                 <ListView
                 refreshControl={
                     <RefreshControl
@@ -136,7 +138,7 @@ class MainWindow extends React.Component {
                 />
                 <TouchableHighlight
                     style = {[styles.button, styles.newButton]}
-                    onPress = {this.openItem}
+                    onPress = {Actions.AddSearch}
                     underlayColor = '#99d9f4'
                 >
                     <Text style={styles.buttonText}> &#8801; </Text>

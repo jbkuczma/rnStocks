@@ -10,6 +10,7 @@ import {
   TextInput,
   Alert,
   ListView,
+  StatusBar,
 } from 'react-native';
 
 import styles from '../Styles/styles';
@@ -75,6 +76,9 @@ class EditStocks extends React.Component {
         return (
             // change color of header area from white
             <View style={styles.editContainer}>
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <Text style={styles.helpText}>
                     {this.state.helpText}
                 </Text>
