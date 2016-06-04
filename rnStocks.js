@@ -18,6 +18,7 @@ import { Router, Scene } from 'react-native-router-flux';
 import MainWindow from './App/Views/Main';
 import EditStocks from './App/Views/EditStocks';
 import StockItemInfo from './App/Views/StockItemInfo';
+import AddStockItem from './App/Views/AddStockItem';
 import styles from './App/Styles/styles';
 
 // var NavigationBarRoute = {
@@ -72,6 +73,7 @@ class rnStocks extends React.Component {
           <Scene key="Main" title="Your stocks" component={MainWindow} initial={true}/>
           <Scene key="AddSearch" component={EditStocks} hideNavBar={false}/>
           <Scene key="StockItemInfo" component={StockItemInfo} hideNavBar={false}/>
+          <Scene key="AddStockItem" component={AddStockItem} hideNavBar={false}/>
         </Scene>
       </Router>
     )
