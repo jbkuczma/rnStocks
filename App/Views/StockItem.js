@@ -16,34 +16,51 @@ import { Actions } from 'react-native-router-flux';
 
 import styles from '../Styles/styles';
 import StockItemInfo from './StockItemInfo';
+GLOBAL = require('./Global');
+
+const goToStockInfo = () => Actions.StockItemInfo({stock: GLOBAL.stock});
+
+// shoutout to StackOverflow for this one 
+function formatNumber (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+}
 
 class StockItem extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
+            ready: false,
             stockInfo: [],
         }
     }
 
     componentDidMount(){
-        this.fetchData("GOOG"); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
+        this.initialFetch("GOOG"); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
     }
     //show more stock information when pressed, should open new view => StockItemInfo
-    // onPress(stock){
-    //     this.fetchData(stock);
-    //
-    //     console.log("pressed");
-    // }
+    onPress(stock){
+        if(!this.state.ready){
+            this.fetchData(stock.symbol);
+        }
+        this.onPress2();
+    }
+    //actual opening of new view => StockItemView
+    onPress2(){
+        if(this.state.ready){
+            GLOBAL.stock = this.state.stockInfo;
+            Actions.StockItemInfo({stock: GLOBAL.stock});
+        }
+    }
 
-    fetchData(stock){
+    initialFetch(stock){
         var data = [];
         var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock + '/quote?format=json&view=detail';
         fetch(url)
         .then((response) => response.json())
         .then((jsonResponse) => {
             var company = jsonResponse.list.resources[0].resource.fields.issuer_name;
-            var change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(3);
+            var change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(2);
             var changePercent = parseFloat(jsonResponse.list.resources[0].resource.fields.chg_percent).toFixed(2);
             var price = parseFloat(jsonResponse.list.resources[0].resource.fields.price).toFixed(2);
             var dayHigh = parseFloat(jsonResponse.list.resources[0].resource.fields.day_high).toFixed(2);
@@ -76,16 +93,60 @@ class StockItem extends React.Component {
         });
     }
 
+    fetchData(stock){
+        var data = [];
+        if(!this.state.ready){
+            var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock + '/quote?format=json&view=detail';
+            fetch(url)
+            .then((response) => response.json())
+            .then((jsonResponse) => {
+                var company = jsonResponse.list.resources[0].resource.fields.issuer_name;
+                var change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(2);
+                var changePercent = parseFloat(jsonResponse.list.resources[0].resource.fields.chg_percent).toFixed(2);
+                var price = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.price).toFixed(2));
+                var dayHigh = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.day_high).toFixed(2));
+                var dayLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.day_low).toFixed(2));
+                var yearHigh = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_high).toFixed(2));
+                var yearLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_low).toFixed(2));
+                data = [{
+                    symbol: stock,
+                    company: company,
+                    priceChange: change,
+                    percentChange: changePercent,
+                    currentPrice: price,
+                    dailyHigh: dayHigh,
+                    dailyLow: dayLow,
+                    yearlyHigh: yearHigh,
+                    yearlyLow: yearLow
+                }];
+                this.setState({
+                    stockInfo: data,
+                    ready: true,
+                });
+                this.onPress2();
+            })
+            .catch((error) => {
+                Alert.alert(
+                    'An error has occurred',
+                    'Please try again',
+                    [
+                        {text: 'Okay', onPress: () => console.log('OK Pressed')},
+                    ]
+                );
+            });
+        }
+    }
+
     render(){
         var stock = this.props.stock;
-        const goToStockInfo = () => Actions.StockItemInfo({stock: stock});
+        // const goToStockInfo = () => Actions.StockItemInfo({stock: GLOBAL.stock});
         return(
             <View>
                 <TouchableHighlight style={styles.buttonContainer}
-                    onPress={goToStockInfo}
-                    // onPress={this.onPress.bind(this,stock.symbol)}
+                    // onPress={goToStockInfo}
+                    onPress={this.onPress.bind(this,stock)}
                 >
-                    <Text style={styles.rowContent}> {stock.symbol} , {stock.name} => {stock.price}</Text>
+                    <Text style={styles.rowContent}> {stock.name} => {stock.price} | {stock.change}</Text>
                 </TouchableHighlight>
             </View>
         );

@@ -11,24 +11,31 @@ import {
 
 import styles from '../Styles/styles';
 
-// <Text> {stockInfo.symbol} </Text>
-// <Text> {stockInfo.percentChange} </Text>
-// <Text> {stockInfo.priceChange} </Text>
-// <Text> {stockInfo.currentPrice} </Text>
-// <Text> {stockInfo.dailyHigh} </Text>
-// <Text> {stockInfo.dailyLow} </Text>
-// <Text> {stockInfo.yearlyHigh} </Text>
-// <Text> {stockInfo.yearlyLow} </Text>
+GLOBAL = require('./Global');
 
 class StockItemInfo extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            stockInfo: [],
+        }
+    }
+
     render(){
-        var stock = this.props.stock;
-        console.log(stock);
+        // var stock = this.props.stock;
+        var stock = GLOBAL.stock;
         return(
             <View style={styles.testing1}>
-                <Text style={styles.testing2}> {stock.symbol} </Text>
-                <Text style={styles.testing2}> {stock.name} </Text>
-                <Text style={styles.testing2}> {stock.price} </Text>
+                <Text style={styles.testing2}> {stock[0].symbol} </Text>
+                <Text style={styles.testing2}> {stock[0].company} </Text>
+                <Text style={styles.testing2}> {stock[0].currentPrice} </Text>
+                <Text style={styles.testing2}> {stock[0].percentChange} </Text>
+                <Text style={styles.testing2}> {stock[0].priceChange} </Text>
+                <Text style={styles.testing2}> {stock[0].dailyLow} </Text>
+                <Text style={styles.testing2}> {stock[0].dailyHigh} </Text>
+                <Text style={styles.testing2}> {stock[0].yearlyLow} </Text>
+                <Text style={styles.testing2}> {stock[0].yearlyHigh} </Text>
             </View>
         );
     }
