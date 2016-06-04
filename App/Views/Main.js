@@ -24,11 +24,15 @@ import StockItem from './StockItem';
 import StockItemInfo from './StockItemInfo';
 
 var data = [
-        {symbol: "AAPL", name: "Apple"},
-        {symbol: "GOOG", name: "Google"},
-        {symbol: "NKE", name: "Nike"},
-        {symbol: "YHOO", name: "Yahoo"},
-        {symbol: "SBUX", name: "Starbucks"},
+        // {symbol: "AAPL", name: "Apple"},
+        // {symbol: "GOOG", name: "Google"},
+        // {symbol: "NKE", name: "Nike"},
+        // {symbol: "YHOO", name: "Yahoo"},
+        // {symbol: "SBUX", name: "Starbucks"},
+        {symbol: '^GSPC', name: 'S&P 500'},
+        {symbol: '^DJI', name: 'DOW J'},
+        {symbol: '^NYA', name: 'NYSE'},
+        {symbol: '^IXIC', name: 'NASDAQ'},
 ];
 
 class MainWindow extends React.Component {
@@ -58,6 +62,7 @@ class MainWindow extends React.Component {
                 .then((jsonResponse) => {
                     var price = jsonResponse.list.resources[0].resource.fields.price;
                     stock.price = parseFloat(price).toFixed(2);
+                    stock.change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(2);
                 })
                 .catch((error) => {
                     Alert.alert(
