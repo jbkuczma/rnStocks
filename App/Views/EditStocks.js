@@ -52,11 +52,8 @@ class EditStocks extends React.Component {
         fetch(url)
         .then((response) => response.text())
         .then((textResponse) => {
-            // console.log(textResponse);
             textResponse = textResponse.slice(42,textResponse.length-2); //terrible way of getting the data but it works for now
-            // console.log(textResponse);
             var data = JSON.parse(textResponse).ResultSet.Result;
-            // console.log(data);
             this.setState({
                 dataSource: this.state.dataSource.cloneWithRows(data),
             });
