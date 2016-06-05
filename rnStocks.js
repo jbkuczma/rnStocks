@@ -70,7 +70,7 @@ class rnStocks extends React.Component {
     return (
       <Router navigationBarStyle={styles.navBar} titleStyle={styles.navTitle} sceneStyle={styles.routerScene}>
         <Scene key="root">
-          <Scene key="Main" title="Your stocks" component={MainWindow} initial={true}/>
+          <Scene key="Main" title="The Market" component={MainWindow} initial={true}/>
           <Scene key="AddSearch" component={EditStocks} hideNavBar={false}/>
           <Scene key="StockItemInfo" component={StockItemInfo} hideNavBar={false}/>
           <Scene key="AddStockItem" component={AddStockItem} hideNavBar={false}/>
