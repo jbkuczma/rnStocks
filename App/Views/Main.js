@@ -29,10 +29,11 @@ var data = [
         // {symbol: "NKE", name: "Nike"},
         // {symbol: "YHOO", name: "Yahoo"},
         // {symbol: "SBUX", name: "Starbucks"},
-        {symbol: '^GSPC', name: 'S&P 500'},
-        {symbol: '^DJI', name: 'DOW J'},
-        {symbol: '^NYA', name: 'NYSE'},
         {symbol: '^IXIC', name: 'NASDAQ'},
+        {symbol: '^DJI', name: 'DOW J'},
+        {symbol: '^GSPC', name: 'S&P 500'},
+        {symbol: '^NYA', name: 'NYSE'},
+
 ];
 
 class MainWindow extends React.Component {
