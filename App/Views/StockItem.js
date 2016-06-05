@@ -38,7 +38,7 @@ class StockItem extends React.Component {
     componentWillMount(){
         this.initialFetch("GOOG"); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
     }
-    
+
     onPress(stock){
         if(!this.state.ready){
             this.fetchData(stock.symbol);
@@ -146,34 +146,36 @@ class StockItem extends React.Component {
                     // onPress={goToStockInfo}
                     onPress={this.onPress.bind(this,stock)}
                 >
-                <View style={styles.rowContainer}>
-                    <View style={styles.row}>
-                        <Text style={styles.name}> {stock.name} </Text>
-                        <View style={styles.price}>
-                            <Text style={styles.priceText}>
-                            {(() => {
-                                switch (stock.price === undefined) {
+                    <View style={styles.rowContainer}>
+                        <View style={styles.row}>
+                            <Text style={styles.name}> {stock.name}
+                            </Text>
+                            <View style={styles.price}>
+                                <Text style={styles.priceText}>
+                                    {(() => {
+                                        switch (stock.price === undefined) {
+                                            case true: return null;
+                                            case false: return formatNumber(stock.price);
+                                        }
+                                    })()}
+                                </Text>
+                            </View>
+                            <Text style={(() => {
+                                switch(stock.change === undefined){ //this is messy but it works
                                     case true: return null;
-                                    case false: return formatNumber(stock.price);
-                                }
-                            })()}
+                                        case false: switch (stock.change.charAt(0) == '-') {
+                                            case true:                   return styles.changeRed;
+                                            case false:                  switch (stock.change.charAt(0) == '+') { //needed another switch statement since if a cell was clicked and '+' was the first char already, another '+' would be added
+                                                case true:  return styles.changeGreen;
+                                                case false: stock.change = '+'+stock.change; return styles.changeGreen;
+                                            }
+                                        }
+                                    }
+                                })()}>
+                                {stock.change}
                             </Text>
                         </View>
-                        <Text style={(() => {
-                            switch(stock.change === undefined){
-                                case true: return null;
-                                case false: switch (stock.change.charAt(0) == '-') {
-                                    case true:                   return styles.changeRed;
-                                    case false:                  stock.change = '+'+stock.change; return styles.changeGreen;
-                                    default:                     return styles.changeRed;
-                                }
-                            }
-
-                        })()}>
-                            {stock.change}
-                        </Text>
                     </View>
-                </View>
                 </TouchableHighlight>
                 <View style={styles.separator}/>
             </View>

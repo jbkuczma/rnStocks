@@ -174,6 +174,11 @@ var styles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
     },
+    marketHours: {
+        alignSelf: 'center',
+        marginBottom: 10,
+        color: '#ffff',
+    },
 });
 
 module.exports = styles;

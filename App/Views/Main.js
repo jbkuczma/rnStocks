@@ -30,6 +30,13 @@ var data = [
         {symbol: '^NYA', name: 'NYSE'},
 ];
 
+function getTime(){
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    return hours+':'+minutes;
+}
+
 class MainWindow extends React.Component {
     constructor(props) {
         super(props);
@@ -46,6 +53,8 @@ class MainWindow extends React.Component {
     }
 
     componentWillMount(){
+        console.log(getTime());
+        console.log(getTime() > '16:11');
         this.getPrice();
     }
     getPrice(){
@@ -110,23 +119,20 @@ class MainWindow extends React.Component {
         this.getPrice();
         this.setState({refreshing: false});
     }
-    // <View style={styles.header}>
-    //
-    // </View>
+
     render() {
         return (
             <View style={styles.container}>
-
-            <StatusBar
-                barStyle="light-content"
-            />
+                <StatusBar
+                    barStyle="light-content"
+                />
                 <ListView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={this.state.refreshing}
-                        onRefresh={this.onRefresh.bind(this)}
-                    />
-                }
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={this.state.refreshing}
+                            onRefresh={this.onRefresh.bind(this)}
+                        />
+                    }
                     style = {styles.listViewContainer}
                     dataSource = {this.state.dataSource}
                     renderRow={(rowData, sectionID, rowID) =>
@@ -136,6 +142,16 @@ class MainWindow extends React.Component {
                         />
                     }
                 />
+                <View>
+                    <Text style={styles.marketHours}>
+                        {(() => {
+                            switch(getTime() >= '09:30' && getTime() <= '16:00'){
+                                case true: return "Market Open";
+                                case false: return "Market Closed"
+                            }
+                        })()}
+                    </Text>
+                </View>
                 <TouchableHighlight
                     style = {[styles.button, styles.newButton]}
                     onPress = {Actions.AddSearch}
@@ -143,7 +159,6 @@ class MainWindow extends React.Component {
                 >
                     <Text style={styles.buttonText}> &#8801; </Text>
                 </TouchableHighlight>
-
             </View>
         )
     }
