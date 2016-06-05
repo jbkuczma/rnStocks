@@ -24,16 +24,10 @@ import StockItem from './StockItem';
 import StockItemInfo from './StockItemInfo';
 
 var data = [
-        // {symbol: "AAPL", name: "Apple"},
-        // {symbol: "GOOG", name: "Google"},
-        // {symbol: "NKE", name: "Nike"},
-        // {symbol: "YHOO", name: "Yahoo"},
-        // {symbol: "SBUX", name: "Starbucks"},
         {symbol: '^IXIC', name: 'NASDAQ'},
         {symbol: '^DJI', name: 'DOW J'},
         {symbol: '^GSPC', name: 'S&P 500'},
         {symbol: '^NYA', name: 'NYSE'},
-
 ];
 
 class MainWindow extends React.Component {
