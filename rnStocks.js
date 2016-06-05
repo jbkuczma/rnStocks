@@ -36,8 +36,4 @@ class rnStocks extends React.Component {
   }
 }
 
-var styles1 = StyleSheet.create({
-
-});
-
 module.exports = rnStocks;

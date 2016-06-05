@@ -11,3 +11,6 @@ exports.symbolSuggest = function(query: string) : Object {
 
 //interesting
 //http://finance.yahoo.com/webservice/v1/symbols/allcurrencies/quote?format=json
+
+//charts
+//http://chart.finance.yahoo.com/z?s=twtr&t=6m
