@@ -20,7 +20,7 @@ GLOBAL = require('./Global');
 
 const goToStockInfo = () => Actions.StockItemInfo({stock: GLOBAL.stock});
 
-// shoutout to StackOverflow for this one 
+// shoutout to StackOverflow for this one
 function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
@@ -35,10 +35,10 @@ class StockItem extends React.Component {
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
         this.initialFetch("GOOG"); //hackish way of solving problem. seems to force stocks to display price regardless of string provided. do not like this solution though
     }
-    //show more stock information when pressed, should open new view => StockItemInfo
+    
     onPress(stock){
         if(!this.state.ready){
             this.fetchData(stock.symbol);
@@ -146,8 +146,36 @@ class StockItem extends React.Component {
                     // onPress={goToStockInfo}
                     onPress={this.onPress.bind(this,stock)}
                 >
-                    <Text style={styles.rowContent}> {stock.name} => {stock.price} | {stock.change}</Text>
+                <View style={styles.rowContainer}>
+                    <View style={styles.row}>
+                        <Text style={styles.name}> {stock.name} </Text>
+                        <View style={styles.price}>
+                            <Text style={styles.priceText}>
+                            {(() => {
+                                switch (stock.price === undefined) {
+                                    case true: return null;
+                                    case false: return formatNumber(stock.price);
+                                }
+                            })()}
+                            </Text>
+                        </View>
+                        <Text style={(() => {
+                            switch(stock.change === undefined){
+                                case true: return null;
+                                case false: switch (stock.change.charAt(0) == '-') {
+                                    case true:                   return styles.changeRed;
+                                    case false:                  stock.change = '+'+stock.change; return styles.changeGreen;
+                                    default:                     return styles.changeRed;
+                                }
+                            }
+
+                        })()}>
+                            {stock.change}
+                        </Text>
+                    </View>
+                </View>
                 </TouchableHighlight>
+                <View style={styles.separator}/>
             </View>
         );
     }
