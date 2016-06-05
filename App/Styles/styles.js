@@ -23,9 +23,10 @@ var styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         padding: 15,
-        backgroundColor: '#2d3336',
+        backgroundColor: '#191919',
     },
     rowContent: {
+        flex: 1,
         color: '#ffff',
     },
     header: {
@@ -79,9 +80,8 @@ var styles = StyleSheet.create({
       flex: 4,
       flexDirection: 'column',
       height: 40,
-      borderColor: '#2d3336',
+      backgroundColor: '#191919',
       borderWidth: 0.5,
-      backgroundColor: '#202020',
       borderRadius: 4,
       color: 'white',
       paddingLeft: 10,
@@ -119,6 +119,60 @@ var styles = StyleSheet.create({
     testing2: {
         textAlign: 'center',
         color: "#ffff",
+    },
+    /////////
+    separator: {
+        height: 0.5,
+        backgroundColor: '#e5e5e5',
+    },
+    changeRed: {
+        color: '#ffff',
+        textAlign: 'right',
+        backgroundColor: '#F7392E',
+        padding: 10,
+        borderRadius: 3,
+        flex: 1,
+        fontSize: 14,
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 10,
+    },
+    changeGreen: {
+        color: '#ffff',
+        textAlign: 'right',
+        backgroundColor: '#4BD261',
+        padding: 10,
+        borderRadius: 3,
+        flex: 1,
+        fontSize: 14,
+        marginTop: 10,
+        marginBottom: 10,
+        marginRight: 10,
+    },
+    name: {
+        color: '#ffff',
+        textAlign: 'left',
+        flex: 2,
+    },
+    price: {
+        flex: 2,
+    },
+    priceText: {
+        color: '#ffff',
+        textAlign: 'center',
+    },
+    row: {
+        flex: 1,
+        flexDirection: 'row',
+        height: 75, //if i want to add anything after the list change this to 50 or 60
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+    ,
+    rowContainer: {
+        flex: 1,
+        marginLeft: 10,
+        marginRight: 10,
     },
 });
 
