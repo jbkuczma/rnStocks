@@ -21,50 +21,6 @@ import StockItemInfo from './App/Views/StockItemInfo';
 import AddStockItem from './App/Views/AddStockItem';
 import styles from './App/Styles/styles';
 
-// var NavigationBarRoute = {
-//     LeftButton(route, navigator, index, navState){
-//         if(index > 0){
-//             return(
-//                 <TouchableHighlight
-//                     underlayColor='transparent'
-//                     onPress={() => {if(index > 0){navigator.pop() } }}
-//                 >
-//                 <Text style={styles.leftNavButton}> Back </Text>
-//                 </TouchableHighlight>
-//             )
-//         }else{
-//             return null;
-//         }
-//     },
-//     RightButton(route, navigator, index, navState){
-//         return null;
-//     },
-//     Title(route, navigator, index, navState){
-//         return null;
-//     }
-// };
-//
-// class rnStocks extends React.Component {
-//
-//     renderScene(route, navigator){
-//         return <route.component {...route.passProps} navigator = {navigator} />
-//     }
-//
-//     render(){
-//         return(
-//             <Navigator
-//                 initialRoute={{name: 'Main', component: MainWindow}}
-//                 renderScene = {this.renderScene}
-//                 navigationBar={
-//                     <Navigator.NavigationBar
-//                         routeMapper={NavigationBarRoute}
-//                     />
-//                 }
-//             />
-//         )
-//     }
-// }
-
 class rnStocks extends React.Component {
   render() {
     return (
