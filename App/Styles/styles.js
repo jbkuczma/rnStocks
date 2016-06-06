@@ -110,22 +110,12 @@ var styles = StyleSheet.create({
     routerScene: {
       paddingTop: Navigator.NavigationBar.Styles.General.NavBarHeight, // some navbar padding to avoid content overlap
     },
-    testing1: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: "#000",
-    },
-    testing2: {
-        textAlign: 'center',
-        color: "#ffff",
-    },
     /////////
     separator: {
         height: 0.5,
         backgroundColor: '#e5e5e5',
     },
-    changeRed: {
+    changeRedMain: {
         color: '#ffff',
         textAlign: 'right',
         backgroundColor: '#F7392E',
@@ -137,7 +127,7 @@ var styles = StyleSheet.create({
         marginBottom: 10,
         marginRight: 10,
     },
-    changeGreen: {
+    changeGreenMain: {
         color: '#ffff',
         textAlign: 'right',
         backgroundColor: '#4BD261',
@@ -178,6 +168,36 @@ var styles = StyleSheet.create({
         alignSelf: 'center',
         marginBottom: 10,
         color: '#ffff',
+    },
+    testing1: {
+        flex: 1,
+        justifyContent: 'center',
+        backgroundColor: "#000",
+    },
+    infoRowHead1: {
+        flexDirection: 'column',
+        alignSelf: 'center',
+        marginBottom: 20,
+        // justifyContent: 'center',
+    },
+    infoRowHead: {
+        flexDirection: 'row',
+        alignSelf: 'center',
+        marginBottom: 20,
+        // justifyContent: 'center',
+    },
+    rightInfo: {
+        textAlign: 'right',
+        color: "#ffff",
+    },
+    rightInfo1: {
+        textAlign: 'center',
+        color: "#ffff",
+        marginBottom: 20,
+    },
+    leftInfo: {
+        color: '#ffff',
+        textAlign: 'left',
     },
 });
 
