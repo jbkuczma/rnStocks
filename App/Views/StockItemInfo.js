@@ -22,15 +22,6 @@ class StockItemInfo extends React.Component {
         }
     }
 
-    // <Text style={styles.testing2}> {stock[0].company} </Text>
-    // <Text style={styles.testing2}> {stock[0].currentPrice} </Text>
-    // <Text style={styles.testing2}> {stock[0].percentChange} </Text>
-    // <Text style={styles.testing2}> {stock[0].priceChange} </Text>
-    // <Text style={styles.testing2}> {stock[0].dailyLow} </Text>
-    // <Text style={styles.testing2}> {stock[0].dailyHigh} </Text>
-    // <Text style={styles.testing2}> {stock[0].yearlyLow} </Text>
-    // <Text style={styles.testing2}> {stock[0].yearlyHigh} </Text>
-
     render(){
         // var stock = this.props.stock;
         var stock = GLOBAL.stock;
