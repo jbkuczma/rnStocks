@@ -48,13 +48,9 @@ class MainWindow extends React.Component {
             refreshing: false,
             db: data,
         };
-        this.updateItem = this.updateItem.bind(this);
-        this.openItem = this.openItem.bind(this);
     }
 
     componentWillMount(){
-        console.log(getTime());
-        console.log(getTime() > '16:11');
         this.getPrice();
     }
     getPrice(){
@@ -84,34 +80,6 @@ class MainWindow extends React.Component {
             });
             //dataSource updates display after rendering and after I click on an element
             //need the display to update before rendering and without clicking
-    }
-
-    _renderHeader(){
-        return(
-            <Text>
-                Testing a header
-            </Text>
-        );
-    }
-
-   updateItem(item, index) {
-        var items = this.state.dataSource;
-        if (index) {
-            items[index] = item;
-        }
-        else {
-            items.push(item)
-        }
-        this.setState({dataSource: items});
-        this.props.navigator.pop();
-    }
-
-    openItem(rowData, rowID) {
-        this.props.navigator.push({
-            name: 'Edit',
-            component: EditStocks,
-            data: this.state.dataSource,
-        });
     }
 
     onRefresh(){
