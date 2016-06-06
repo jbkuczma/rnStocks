@@ -164,10 +164,10 @@ class StockItem extends React.Component {
                                 switch(stock.change === undefined){ //this is messy but it works
                                     case true: return null;
                                         case false: switch (stock.change.charAt(0) == '-') {
-                                            case true:                   return styles.changeRed;
+                                            case true:                   return styles.changeRedMain;
                                             case false:                  switch (stock.change.charAt(0) == '+') { //needed another switch statement since if a cell was clicked and '+' was the first char already, another '+' would be added
-                                                case true:  return styles.changeGreen;
-                                                case false: stock.change = '+'+stock.change; return styles.changeGreen;
+                                                case true:  return styles.changeGreenMain;
+                                                case false: stock.change = '+'+stock.change; return styles.changeGreenMain;
                                             }
                                         }
                                     }
