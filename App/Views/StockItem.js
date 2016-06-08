@@ -50,6 +50,7 @@ class StockItem extends React.Component {
         if(this.state.ready){
             GLOBAL.stock = this.state.stockInfo;
             Actions.StockItemInfo({stock: GLOBAL.stock});
+            this.setState({ready: false});
         }
     }
 
