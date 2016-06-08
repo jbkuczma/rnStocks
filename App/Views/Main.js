@@ -52,7 +52,6 @@ class MainWindow extends React.Component {
         this.getPrice = this.getPrice.bind(this);
     }
 
-//FIX
     componentWillMount(){
         var newStock = [];
         let newData = this.state.db.slice(0);
@@ -77,60 +76,11 @@ class MainWindow extends React.Component {
                 });
             });
     }
-//FIX
-//PROBLEMS FROM HERE....
-    // componentDidMount(){
-    //     var promise = this.getPrice();
-    //     promise.then(function(val){
-    //         console.log(val);
-    //         //GET WARNING SAYING THAT VAL IS UNDEFINED AND CAN'T SET STATE OF UNDEFINED
-    //         this.setState({
-    //             db: val,
-    //             dataSource: this.state.dataSource.cloneWithRows(val),
-    //             loaded: true,
-    //         });
-    //     });
-    // }
-//FIX
+
     getPrice() {
         var newData = this.state.db.slice();
         var newStock = [];
-        // newData.forEach(function(stock,index) {
-        //     var temp = JSON.parse(JSON.stringify(newData[index]));
-        //     var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ temp.symbol + '/quote?format=json&view=detail';
-        //         fetch(url)
-        //         .then((response) => response.json())
-        //         .then((jsonResponse) => {
-        //             var price = jsonResponse.list.resources[0].resource.fields.price;
-        //             var change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(2);
-        //             temp.price = price;
-        //             temp.change = change;
-        //             newStock.push(temp);
-        //             return newStock;
-        //         })
-        //         .then((stocks) => {
-        //             if(index === newData.length-1){
-        //                 // return stocks;
-        //                 if(stocks !== undefined){
-        //                     this.setState({
-        //                         db: stocks,
-        //                         dataSource: this.state.dataSource.cloneWithRows(stocks),
-        //                         loaded: true,
-        //                     });
-        //                 }
-        //             }
-        //         })
-        //         .catch((error) => {
-        //             Alert.alert(
-        //                 'An error has occurred',
-        //                 'Please try again',
-        //                 [
-        //                     {text: 'Okay', onPress: () => console.log('OK Pressed')},
-        //                 ]
-        //             );
-        //         });
-        // });
-
+        //map vs forEach?
         var promise = new Promise(
             function(resolve,reject){
                 newData.forEach(function(stock,index) {
@@ -160,64 +110,24 @@ class MainWindow extends React.Component {
                             ]
                         );
                     });
-
                 });
             });
         return promise;
-
-
-
-
-        // console.log("after");
-        // console.log(newStock);
-        // return newData;
-        // var newStock = [];
-        // let newData = this.state.db.slice(0);
-        // console.log(newData);
-        //     newData.map(function(stock, index){
-        //         newStock = stock;
-        //         console.log(newStock);
-        //         var url = 'http://finance.yahoo.com/webservice/v1/symbols/'+ stock.symbol + '/quote?format=json&view=detail';
-        //         fetch(url)
-        //         .then((response) => response.json())
-        //         .then((jsonResponse) => {
-        //             var price = jsonResponse.list.resources[0].resource.fields.price;
-        //             newStock.price = parseFloat(price).toFixed(2);
-        //             newStock.change = parseFloat(jsonResponse.list.resources[0].resource.fields.change).toFixed(2);
-        //             // newStock.push(stock);
-        //             console.log(newStock);
-        //             console.log('------');
-        //         })
-        //         .catch((error) => {
-        //             Alert.alert(
-        //                 'An error has occurred',
-        //                 'Please try again',
-        //                 [
-        //                     {text: 'Okay', onPress: () => console.log('OK Pressed')},
-        //                 ]
-        //             );
-        //         });
-        //     });
-        //     return newData;
     }
 
     onRefresh(){
         let _this = this;
         this.setState({refreshing: true});
-        // this.getPrice();
-        console.log(_this.state.db);
         var promise = this.getPrice();
-        promise.then(function(val){
-            //GET WARNING SAYING THAT VAL IS UNDEFINED AND CAN'T SET STATE OF UNDEFINED
-            //YET LOOKING IN THE CONSOLE SHOWS A VALUE AND val === undefined returns false
-            if(val !== undefined){
-                console.log('in');
-                _this.setState({
-                    db: val,
-                    dataSource: _this.state.dataSource.cloneWithRows(val),
-                    loaded: true,
-                });
-                console.log(_this.state.db);
+        promise.then(function(theStocks){
+            if(theStocks !== undefined){
+                if(theStocks.length === 4){
+                    _this.setState({
+                        db: theStocks,
+                        dataSource: _this.state.dataSource.cloneWithRows(theStocks),
+                        loaded: true,
+                    });
+                }
             }
         })
         .catch(function(error){
@@ -227,7 +137,7 @@ class MainWindow extends React.Component {
             refreshing: false
         });
     }
-//.... TO HERE
+
     render() {
         return (
             <View style={styles.container}>
