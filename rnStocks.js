@@ -29,6 +29,7 @@ class rnStocks extends React.Component {
           <Scene key="Main" title="The Market" component={MainWindow} initial={true}/>
           <Scene key="AddSearch" component={EditStocks} hideNavBar={false}/>
           <Scene key="StockItemInfo" component={StockItemInfo} hideNavBar={false}/>
+          <Scene key="AddStockItem" component={AddStockItem} hideNavBar={false}/>
         </Scene>
       </Router>
     )
