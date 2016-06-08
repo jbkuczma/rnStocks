@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 import styles from '../Styles/styles';
-import AddStockItem from './AddStockItem';
+import SearchResultItem from './SearchResultItem';
 
 function symbolSuggest(query) {
   var url = 'http://d.yimg.com/aq/autoc?query=' + query + '&region=US&lang=en-US&callback=YAHOO.util.ScriptNodeDataSource.callbacks';

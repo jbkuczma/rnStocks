@@ -19,7 +19,7 @@ import styles from '../Styles/styles';
 
 GLOBAL = require('./Global');
 
-class AddStockItem extends React.Component {
+class SearchResultItem extends React.Component {
 
     constructor(props){
         super(props);
@@ -102,4 +102,4 @@ class AddStockItem extends React.Component {
     }
 }
 
-module.exports = AddStockItem;
+module.exports = SearchResultItem;
