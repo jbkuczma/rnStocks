@@ -94,7 +94,7 @@ class EditStocks extends React.Component {
                     <ListView
                         dataSource = {this.state.dataSource}
                         renderRow={(rowData, sectionID, rowID) =>
-                            <AddStockItem stock={rowData}
+                            <SearchResultItem stock={rowData}
                                 onPress={() => this.props.addOnPress(rowData)}
                             />
                         }
