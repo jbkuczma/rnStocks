@@ -108,6 +108,8 @@ class StockItem extends React.Component {
                 var dayLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.day_low).toFixed(2));
                 var yearHigh = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_high).toFixed(2));
                 var yearLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_low).toFixed(2));
+                var substring = '&amp;';
+                company = company.replace(substring,'&');
                 data = [{
                     symbol: stock,
                     company: company,
