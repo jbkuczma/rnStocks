@@ -19,18 +19,21 @@ import styles from '../Styles/styles';
 
 GLOBAL = require('./Global');
 
+/*
+*This item is displayed when user is searching for a stock; results from their query.
+*/
 class SearchResultItem extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
             ready: false,
-            stockInfp: [],
+            stockInfo: [],
         }
     }
 
     //used in the search window, will add stock to current list viewed on main screen
-    addOnPress(stock){
+    moreInfoOnPress(stock){
         if(!this.state.ready){
             this.fetchData(stock);
         }
@@ -93,7 +96,7 @@ class SearchResultItem extends React.Component {
         return(
             <View>
                 <TouchableHighlight style={styles.buttonContainer}
-                    onPress={this.addOnPress.bind(this,stock.symbol)}
+                    onPress={this.moreInfoOnPress.bind(this,stock.symbol)}
                 >
                     <Text style={styles.rowContent}> {stock.symbol} , {stock.name} </Text>
                 </TouchableHighlight>
