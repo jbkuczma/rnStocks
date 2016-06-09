@@ -26,10 +26,10 @@ class StockItemInfo extends React.Component {
         // var stock = this.props.stock;
         var stock = GLOBAL.stock;
         return(
-            <View style={styles.testing1}>
-                <View style={styles.infoRowHead1}>
+            <View style={styles.infoContainer}>
+                <View style={styles.infoRowHeadFirst}>
                     <Text style={styles.leftInfo}> {stock[0].company} </Text>
-                    <Text style={styles.rightInfo1}> {stock[0].symbol} </Text>
+                    <Text style={styles.rightInfoSymbol}> {stock[0].symbol} </Text>
                 </View>
                 <View style={styles.infoRowHead}>
                     <Text style={styles.leftInfo}> Currently </Text>
@@ -37,11 +37,37 @@ class StockItemInfo extends React.Component {
                 </View>
                 <View style={styles.infoRowHead}>
                     <Text style={styles.leftInfo}> Change % </Text>
-                    <Text style={styles.rightInfo}> {stock[0].percentChange} </Text>
+                    <Text style={(() => {
+                        switch(stock[0].percentChange === undefined){ //this is messy but it works
+                            case true: return null;
+                                case false: switch (stock[0].percentChange.charAt(0) == '-') {
+                                    case true:                   return styles.rightInfoLoss;
+                                    case false:                  switch (stock[0].percentChange.charAt(0) == '+') { //needed another switch statement since if a cell was clicked and '+' was the first char already, another '+' would be added
+                                        case true:  return styles.rightInfoGain;
+                                        case false: stock[0].percentChange = '+'+stock[0].percentChange; return styles.rightInfoGain;
+                                    }
+                                }
+                            }
+                        })()}>
+                        {stock[0].percentChange}
+                    </Text>
                 </View>
                 <View style={styles.infoRowHead}>
                     <Text style={styles.leftInfo}> Change $ </Text>
-                    <Text style={styles.rightInfo}> {stock[0].priceChange} </Text>
+                    <Text style={(() => {
+                        switch(stock[0].priceChange === undefined){ //this is messy but it works
+                            case true: return null;
+                                case false: switch (stock[0].priceChange.charAt(0) == '-') {
+                                    case true:                   return styles.rightInfoLoss;
+                                    case false:                  switch (stock[0].priceChange.charAt(0) == '+') { //needed another switch statement since if a cell was clicked and '+' was the first char already, another '+' would be added
+                                        case true:  return styles.rightInfoGain;
+                                        case false: stock[0].priceChange = '+'+stock[0].priceChange; return styles.rightInfoGain;
+                                    }
+                                }
+                            }
+                        })()}>
+                        {stock[0].priceChange}
+                    </Text>
                 </View>
                 <View style={styles.infoRowHead}>
                     <Text style={styles.leftInfo}> Daily High </Text>
