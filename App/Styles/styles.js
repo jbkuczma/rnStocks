@@ -97,6 +97,7 @@ var styles = StyleSheet.create({
         flex: 10,
         marginTop: 10,
     },
+    ////////
     navBar: {
       flex: 1,
       flexDirection: 'row',
@@ -169,12 +170,12 @@ var styles = StyleSheet.create({
         marginBottom: 10,
         color: '#ffff',
     },
-    testing1: {
+    infoContainer: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: "#000",
     },
-    infoRowHead1: {
+    infoRowHeadFirst: {
         flexDirection: 'column',
         alignSelf: 'center',
         marginBottom: 20,
@@ -182,22 +183,34 @@ var styles = StyleSheet.create({
     },
     infoRowHead: {
         flexDirection: 'row',
-        alignSelf: 'center',
+        // alignSelf: 'center',
         marginBottom: 20,
-        // justifyContent: 'center',
+        justifyContent: 'center',
+    },
+    leftInfo: {
+        flex: 5,
+        color: '#ffff',
+        textAlign: 'center',
     },
     rightInfo: {
-        textAlign: 'right',
+        flex: 5,
+        textAlign: 'center',
         color: "#ffff",
     },
-    rightInfo1: {
+    rightInfoLoss: {
+        flex: 5,
+        textAlign: 'center',
+        color: '#F7392E',
+    },
+    rightInfoGain: {
+        flex: 5,
+        textAlign: 'center',
+        color: '#4BD261',
+    },
+    rightInfoSymbol: {
         textAlign: 'center',
         color: "#ffff",
         marginBottom: 20,
-    },
-    leftInfo: {
-        color: '#ffff',
-        textAlign: 'left',
     },
 });
 
