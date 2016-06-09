@@ -25,6 +25,9 @@ function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
 
+/*
+* This is for the main page, each row in the lsitview is a stock item
+*/
 class StockItem extends React.Component {
 
     constructor(props){
@@ -45,7 +48,7 @@ class StockItem extends React.Component {
         }
         this.onPress2();
     }
-    //actual opening of new view => StockItemView
+    //actual opening of new view => StockItemInfo
     onPress2(){
         if(this.state.ready){
             GLOBAL.stock = this.state.stockInfo;
@@ -109,8 +112,7 @@ class StockItem extends React.Component {
                 var dayLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.day_low).toFixed(2));
                 var yearHigh = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_high).toFixed(2));
                 var yearLow = formatNumber(parseFloat(jsonResponse.list.resources[0].resource.fields.year_low).toFixed(2));
-                var substring = '&amp;';
-                company = company.replace(substring,'&');
+                company = company.replace('&amp;','&');
                 data = [{
                     symbol: stock,
                     company: company,
