@@ -6,8 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react": "^15.0.2",
-    "react-native": "^0.26.1",
-    "react-native-router-flux": "^3.26.10"
+    "react": "15.0.2",
+    "react-native": "0.26.2",
+    "react-native-router-flux": "3.26.10"
   }
 }
